@@ -1,0 +1,26 @@
+{
+    "list": [
+        {
+            "title": "SYD to MEL",
+            "departureDatetime": "Fri, 24 May 2024 06:00", 
+            "arrivalDatetime": "Fri, 24 May 2024 07:35",
+            "aircraftType": "Boeing 737-800 (Winglets)",
+            "flightId": "QF401",
+            "departureAirport": "Sydney - Terminal 3",
+            "arrivalAirport": "Melbourne - Terminal 1",
+            "services": "null",
+            "flightTime": "1h 35m"
+        },
+        {
+            "title": "SYD to BRI",
+            "departureDatetime": "Sat, 24 May 2024 09:00", 
+            "arrivalDatetime": "Sat, 24 May 2024 011:05",
+            "aircraftType": "Boeing 747 (Regular)",
+            "flightId": "QF402",
+            "departureAirport": "Sydney - Terminal 2",
+            "arrivalAirport": "Brisbane - Terminal 4",
+            "services": "WIFI",
+            "flightTime": "2h 05m"
+        }
+    ]
+}

@@ -1,0 +1,53 @@
+<%- include('partials/header') -%>
+
+<h2><%= flight.title %></h2>
+
+<h4>Flight Details</h4>
+
+<p> Departure Time: <%= flight.departureDatetime %></p>
+<p> Departure Airport: <%= flight.departureAirport %></p>
+<p> Arrival Time: <%= flight.arrivalDatetime %></p>
+<p> Arrival Airport: <%= flight.arrivalAirport %></p>
+<p> Flight ID: <%= flight.flightId %></p>
+<p> Total Duration: <%= flight.flightTime %></p>
+<p> Inflight Services: <%= flight.services %></p>
+
+<h4>Seating Selection</h4>
+<form action="/booking/<%= flight.flightId %>" method="get">
+    <label for="economySeats">Economy Seats:</label>
+    <input type="number" name="economySeats" id="economySeats" min="0">
+    <br>
+    <label for="businessSeats">Business Seats:</label>
+    <input type="number" name="businessSeats" id="businessSeats" min="0">
+    <br>
+    <label for="firstClassSeats">First Class Seats:</label>
+    <input type="number" name="firstClassSeats" id="firstClassSeats" min="0">
+    <br>
+    <label for="price">Price: <span id="totalPrice"></span></label>
+    <br>
+    <button type="submit">Confirm</button>
+</form>
+
+<script>
+    const economySeatsInput = document.getElementById('economySeats');
+    const businessSeatsInput = document.getElementById('businessSeats');
+    const firstClassSeatsInput = document.getElementById('firstClassSeats');
+    const priceOutput = document.getElementById('price');
+
+    function calculatePrice() {
+        const economySeats = parseInt(economySeatsInput.value) || 0;
+        const businessSeats = parseInt(businessSeatsInput.value) || 0;
+        const firstClassSeats = parseInt(firstClassSeatsInput.value) || 0;
+        const economyPrice = 100; // Set your own price for economy seats
+        const businessPrice = 200; // Set your own price for business seats
+        const firstClassPrice = 300; // Set your own price for first class seats
+        const totalPrice = (economySeats * economyPrice) + (businessSeats * businessPrice) + (firstClassSeats * firstClassPrice);
+        document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
+    }
+    economySeatsInput.addEventListener('input', calculatePrice);
+    businessSeatsInput.addEventListener('input', calculatePrice);
+    firstClassSeatsInput.addEventListener('input', calculatePrice);
+</script>
+
+
+<%- include('partials/footer') -%>

@@ -1,0 +1,48 @@
+<%- include('partials/header') -%>
+
+<header>
+    <h2>Booking Details</h2>
+</header>
+
+<h4>Booking Summary</h4>
+<p>Flight Id: <%= flightId %></p>
+<p>Seating:</p>
+<ul>
+    <li>Economy Seats: <%= economySeats %></li>
+    <li>Business Seats: <%= businessSeats %></li>
+    <li>First Class Seats: <%= firstClassSeats %></li>
+</ul>
+
+<form action="/booking" method="post">
+    <h4>Customer Details</h4>
+    <input type="hidden" name="flightId" value="<%= flightId %>">
+    <input type="hidden" name="economySeats" value="<%= economySeats %>">
+    <input type="hidden" name="businessSeats" value="<%= businessSeats %>">
+    <input type="hidden" name="firstClassSeats" value="<%= firstClassSeats %>">
+
+    <label for="name">Name:</label>
+    <input type="string" name="name" id="name">
+    <br>
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email">
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password">
+    <br>
+
+    <h4>Payment Details</h4>
+    <label for="cardNumber">Card No:</label>
+    <input type="number" name="cardNumber" id="cardNumber">
+    <br>
+    <label for="expiryDate">Expiry Date:</label>
+    <input type="date" name="expiryDate" id="expiryDate">
+    <br>
+    <label for="cvc">CVC:</label>
+    <input type="number" name="cvc" id="cvc">
+    <br>
+
+    <button type="submit">Confirm Reservation of $<%= totalPrice %></button>
+</form>
+
+<%- include('partials/footer') -%>
+
