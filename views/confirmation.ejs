@@ -1,0 +1,15 @@
+<%- include('partials/header') -%>
+
+<h2>Thanks <%= name %>, booking has been confirmed. Thank you for choosing FlyDreamAir.</h2>
+<p>A confirmation will be sent to <%= email %> shortly!</p>
+
+<h4>Booking Summary</h4>
+<p>Flight Id: <%= flightId %></p>
+<p>Seating:</p>
+<ul>
+    <li>Economy Seats: <%= economySeats %></li>
+    <li>Business Seats: <%= businessSeats %></li>
+    <li>First Class Seats: <%= firstClassSeats %></li>
+</ul>
+
+<%- include('partials/footer') -%>

@@ -1,0 +1,18 @@
+<%- include('partials/header') -%>
+
+<header>
+    <h2>All Flights</h2>
+</header>
+
+<ul>
+   <% flights.forEach(function(flight) { %>
+   <li>
+    <h4><%= flight.title %> for <%= flight.flightTime %></h4>
+    <p><%= flight.departureDatetime %> to <%= flight.arrivalDatetime %></p>
+    
+    <button><a href="/flight/<%= flight.flightId %>">View Flight</a></button>
+   </li> 
+   <% }); %>
+</ul>
+
+<%- include('partials/footer') -%>
