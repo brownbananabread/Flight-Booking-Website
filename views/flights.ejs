@@ -4,15 +4,19 @@
     <h2>All Flights</h2>
 </header>
 
-<ul>
+<ol>
    <% flights.forEach(function(flight) { %>
-   <li>
-    <h4><%= flight.title %> for <%= flight.flightTime %></h4>
-    <p><%= flight.departureDatetime %> to <%= flight.arrivalDatetime %></p>
-    
-    <button><a href="/flight/<%= flight.flightId %>">View Flight</a></button>
-   </li> 
+    <div class="card">
+        <div class="card-header">
+            <%= flight.flightTime %>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><%= flight.title %></h5>
+          <p class="card-text"><%= flight.departureDatetime %> to <%= flight.arrivalDatetime %></p>
+          <a href="/flight/<%= flight.flightId %>" class="btn btn-primary">View Flight</a>
+        </div>
+      </div>
    <% }); %>
-</ul>
+</ol>
 
 <%- include('partials/footer') -%>

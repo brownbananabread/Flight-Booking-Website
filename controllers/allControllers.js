@@ -1,5 +1,6 @@
 const flights = require('../models/Flight.json');
 const allFlights = flights.list
+const Booking = require('../models/Booking')
 
 function getHomepage(req, res) {
     res.render('home')
@@ -31,7 +32,7 @@ function makeBooking(req, res) {
     res.render('booking', { economySeats, businessSeats, firstClassSeats, flightId, totalPrice});
 }
 
-function postBooking(req, res) {
+async function postBooking(req, res) {
     let flightId = req.body.flightId;
     let economySeats = req.body.economySeats;
     let businessSeats = req.body.businessSeats;
@@ -39,9 +40,20 @@ function postBooking(req, res) {
     let name = req.body.name;
     let email = req.body.email;
 
-    // post booking to db
-    res.render('confirmation', {flightId, economySeats, businessSeats, firstClassSeats, name, email});
-    // if error, res.status(500).send('Error')
+    var bookingInformation = {name,email,flightId,economySeats,businessSeats,firstClassSeats}
+
+    try {
+        const newBooking = await Booking.create(bookingInformation)
+        if (newBooking) {
+            console.log("User Created", newBooking)
+        } else {
+            console.log("Not Created")
+        }
+        res.render('confirmation', bookingInformation);
+
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
 }
 
 
