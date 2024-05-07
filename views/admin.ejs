@@ -1,0 +1,18 @@
+<%- include('partials/header') -%>
+
+<header>
+    <h2>Admin Page</h2>
+</header>
+
+<form action="/admin" method="post">
+  <h4>Customer Details</h4>
+  <label for="email">Email:</label>
+  <input required type="email" name="email" id="email">
+  <br>
+  <label for="password">Password:</label>
+  <input required type="password" name="password" id="password">
+  <br>
+  <button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+<%- include('partials/footer') -%>

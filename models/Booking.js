@@ -5,9 +5,9 @@ const bookingSchema = new Schema({
   name:String,
   email:String,
   flightId:String,
-  economySeats:Number,
-  businessSeats:Number,
-  firstClassSeats:Number,
+  economySeats:String,
+  businessSeats:String,
+  firstClassSeats:String,
 }, {
   timestamps: true,
 });
