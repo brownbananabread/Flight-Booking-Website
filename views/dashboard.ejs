@@ -1,0 +1,24 @@
+<%- include('partials/header') -%>
+
+<header>
+    <h2>Dashboard</h2>
+</header>
+
+<ol>
+  <% bookings.forEach(function(booking) { %>
+    <div class="card">
+      <div class="card-header">
+        <p>Flight ID: <%= booking.flightId %></p>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Booking Name: <%= booking.name %></h5>
+        <h5 class="card-title">Customer Email: <%= booking.email %></h5>
+        <p class="card-text">Economy Seats: <%= booking.economySeats %></p>
+        <p class="card-text">Business Seats: <%= booking.businessSeats %></p>
+        <p class="card-text">First Class Seats: <%= booking.firstClassSeats %></p>
+      </div>
+    </div>
+  <% }); %>
+</ol>
+
+<%- include('partials/footer') -%>

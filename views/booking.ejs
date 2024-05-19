@@ -8,9 +8,9 @@
 <p>Flight Id: <%= flightId %></p>
 <p>Seating:</p>
 <ul>
-    <li>Economy Seats: <%= economySeats %></li>
-    <li>Business Seats: <%= businessSeats %></li>
-    <li>First Class Seats: <%= firstClassSeats %></li>
+    <li>Economy Seats: <%= economySeats %> Seat(s)</li>
+    <li>Business Seats: <%= businessSeats %> Seat(s)</li>
+    <li>First Class Seats: <%= firstClassSeats %> Seat(s)</li>
 </ul>
 
 <form action="/booking" method="post">
@@ -21,27 +21,27 @@
     <input type="hidden" name="firstClassSeats" value="<%= firstClassSeats %>">
 
     <label for="name">Name:</label>
-    <input type="string" name="name" id="name">
+    <input required type="string" name="name" id="name">
     <br>
     <label for="email">Email:</label>
-    <input type="email" name="email" id="email">
+    <input required type="email" name="email" id="email">
     <br>
     <label for="password">Password:</label>
-    <input type="password" name="password" id="password">
+    <input required type="password" name="password" id="password">
     <br>
 
     <h4>Payment Details</h4>
     <label for="cardNumber">Card No:</label>
-    <input type="number" name="cardNumber" id="cardNumber">
+    <input required type="number" name="cardNumber" id="cardNumber">
     <br>
     <label for="expiryDate">Expiry Date:</label>
-    <input type="date" name="expiryDate" id="expiryDate">
+    <input required type="date" name="expiryDate" id="expiryDate">
     <br>
     <label for="cvc">CVC:</label>
-    <input type="number" name="cvc" id="cvc">
+    <input required type="number" name="cvc" id="cvc">
     <br>
 
-    <button type="submit">Confirm Reservation of $<%= totalPrice %></button>
+    <button type="submit" class="btn btn-primary">Confirm Reservation of $<%= totalPrice %></button>
 </form>
 
 <%- include('partials/footer') -%>

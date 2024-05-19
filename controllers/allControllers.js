@@ -1,5 +1,6 @@
 const flights = require('../models/Flight.json');
 const allFlights = flights.list
+const Booking = require('../models/Booking')
 
 function getHomepage(req, res) {
     res.render('home')
@@ -31,18 +32,59 @@ function makeBooking(req, res) {
     res.render('booking', { economySeats, businessSeats, firstClassSeats, flightId, totalPrice});
 }
 
-function postBooking(req, res) {
+async function postBooking(req, res) {
     let flightId = req.body.flightId;
-    let economySeats = req.body.economySeats;
-    let businessSeats = req.body.businessSeats;
-    let firstClassSeats = req.body.firstClassSeats;
+    let economySeatsQty = req.body.economySeats;
+    let businessSeatsQty = req.body.businessSeats;
+    let firstClassSeatsQty = req.body.firstClassSeats;
     let name = req.body.name;
     let email = req.body.email;
 
-    // post booking to db
-    res.render('confirmation', {flightId, economySeats, businessSeats, firstClassSeats, name, email});
-    // if error, res.status(500).send('Error')
+    let economySeats = generateRandomID(economySeatsQty).toString();
+    let businessSeats = generateRandomID(businessSeatsQty).toString();
+    let firstClassSeats = generateRandomID(firstClassSeatsQty).toString();
+
+    var bookingInformation = {name,email,flightId,economySeats,businessSeats,firstClassSeats}
+
+    try {
+        const newBooking = await Booking.create(bookingInformation)
+        if (newBooking) {
+            console.log("User Created", newBooking)
+        } else {
+            console.log("Not Created")
+        }
+        res.render('confirmation', bookingInformation);
+
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
 }
 
+function getAdminpage(req, res) {
+    res.render('admin')
+}
 
-module.exports = {getHomepage, getFlights, getFlight, makeBooking, postBooking}    
+async function postAdminpage(req, res) {
+    try {
+        const bookings = await Booking.find();
+        res.render('dashboard', { bookings: bookings }); // Pass bookings as an object
+    } catch (error) {
+        // Handle any errors appropriately
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    }
+}
+
+function generateRandomID(quantity) {
+    let ids = [];
+    for (let i = 0; i < quantity; i++) {
+        let randomLetter = String.fromCharCode(97 + Math.floor(Math.random() * 26));
+        let randomNumber = Math.floor(Math.random() * 10);
+        let id = randomLetter.toUpperCase() + randomNumber.toString();
+        ids.push(id);
+    }
+    return ids.join(', '); // Joining all generated IDs into a single string
+  }
+
+
+module.exports = {getHomepage, getFlights, getFlight, makeBooking, postBooking, getAdminpage, postAdminpage}    

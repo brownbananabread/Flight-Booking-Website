@@ -4,28 +4,33 @@
 
 <h4>Flight Details</h4>
 
-<p> Departure Time: <%= flight.departureDatetime %></p>
-<p> Departure Airport: <%= flight.departureAirport %></p>
-<p> Arrival Time: <%= flight.arrivalDatetime %></p>
-<p> Arrival Airport: <%= flight.arrivalAirport %></p>
-<p> Flight ID: <%= flight.flightId %></p>
-<p> Total Duration: <%= flight.flightTime %></p>
-<p> Inflight Services: <%= flight.services %></p>
+<ul>
+    <li><p> Departure Time: <%= flight.departureDatetime %></p></li>
+    <li><p> Departure Airport: <%= flight.departureAirport %></p></li>
+    <li><p> Arrival Time: <%= flight.arrivalDatetime %></p></li>
+    <li><p> Arrival Airport: <%= flight.arrivalAirport %></p></li>
+    <li><p> Flight ID: <%= flight.flightId %></p></li>
+    <li><p> Total Duration: <%= flight.flightTime %></p></li>
+    <li><p> Inflight Services: <%= flight.services %></p></li>
+</ul>
 
 <h4>Seating Selection</h4>
 <form action="/booking/<%= flight.flightId %>" method="get">
     <label for="economySeats">Economy Seats:</label>
-    <input type="number" name="economySeats" id="economySeats" min="0">
+    <input required type="number" name="economySeats" id="economySeats" min="0" placeholder="0">
     <br>
     <label for="businessSeats">Business Seats:</label>
-    <input type="number" name="businessSeats" id="businessSeats" min="0">
+    <input required type="number" name="businessSeats" id="businessSeats" min="0" placeholder="0">
     <br>
     <label for="firstClassSeats">First Class Seats:</label>
-    <input type="number" name="firstClassSeats" id="firstClassSeats" min="0">
+    <input required type="number" name="firstClassSeats" id="firstClassSeats" min="0" placeholder="0">
     <br>
-    <label for="price">Price: <span id="totalPrice"></span></label>
+    <label for="price">Price: $<span id="totalPrice">0.00</span></label>
     <br>
-    <button type="submit">Confirm</button>
+    <button type="submit" class="btn btn-primary">Confirm</button>
+
+
+    
 </form>
 
 <script>
